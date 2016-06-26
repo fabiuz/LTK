@@ -233,6 +233,7 @@ namespace LTK
                     {
                         bNumero_ja_sorteado[numero_aleatorio] = true;
                         jogo_aleatorio[iA, iB] = numero_aleatorio;
+
                         iB++;
 
                         qt_de_numeros_aleatorios++;
