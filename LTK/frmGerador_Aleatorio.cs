@@ -60,8 +60,8 @@ namespace LTK
                     "INTRALOT_KENO_MINAS",
                     new string[] {
                         "com 1 número.", "com 2 números.", "com 3 números.", "com 4 números.", "com 5 números.",
-                        "com 6 números.", "com 7 números.", "com 8 números.", "com 9 números.", "com 10 números.",
-                        "com 20 números."}
+                        "com 6 números.", "com 7 números.", "com 8 números.", "com 9 números.", "com 10 números."
+                    }
                 }
             };
 
@@ -105,15 +105,14 @@ namespace LTK
                 cmbAposta_Quantidade.Items.Add(iA + " jogo(s).");
             }
 
-            // Vamos preencher o controle 'cmbAposta_Quantidade'.
-            //for (var iA = 5000; iA <= 5000000; iA += 5000)
-            //{
-            //    cmbAposta_Quantidade.Items.Add(iA + " jogo(s).");
-            //}
-
             cmbAposta_Quantidade.SelectedIndex = 0;
         }
 
+        /// <summary>
+        ///     Toda vez que o controle 'cmbJogo_Tipo' altera, devemos atualizar o controle 'cmbAposta_com'.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbJogo_Tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Quando o usuário seleciona um outro jogo, devemos atualizar o controle 'cmbJogo_com' pois,
@@ -131,7 +130,6 @@ namespace LTK
             cmbAposta_com.Items.Clear();
             cmbAposta_com.Items.AddRange(jogo_aposta[strJogo_Selecionado].ToArray());
             cmbAposta_com.SelectedIndex = 0;
-
         }
 
         private void btnGerar_Click(object sender, EventArgs e)

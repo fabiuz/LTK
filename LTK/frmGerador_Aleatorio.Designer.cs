@@ -48,6 +48,8 @@
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnCopiar = new System.Windows.Forms.Button();
             this.bgLtk = new System.ComponentModel.BackgroundWorker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -86,11 +88,13 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(771, 579);
-            this.splitContainer1.SplitterDistance = 145;
+            this.splitContainer1.SplitterDistance = 129;
             this.splitContainer1.TabIndex = 2;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnGerar);
             this.panel1.Controls.Add(this.label3);
@@ -102,7 +106,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(771, 146);
+            this.panel1.Size = new System.Drawing.Size(771, 128);
             this.panel1.TabIndex = 1;
             // 
             // groupBox1
@@ -111,7 +115,7 @@
             this.groupBox1.Controls.Add(this.chkPar_Impar);
             this.groupBox1.Location = new System.Drawing.Point(12, 52);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(747, 91);
+            this.groupBox1.Size = new System.Drawing.Size(747, 70);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Distribuição:";
@@ -119,7 +123,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 68);
+            this.checkBox1.Location = new System.Drawing.Point(6, 42);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(585, 17);
             this.checkBox1.TabIndex = 12;
@@ -139,7 +143,7 @@
             // 
             // btnGerar
             // 
-            this.btnGerar.Location = new System.Drawing.Point(503, 23);
+            this.btnGerar.Location = new System.Drawing.Point(684, 23);
             this.btnGerar.Name = "btnGerar";
             this.btnGerar.Size = new System.Drawing.Size(75, 23);
             this.btnGerar.TabIndex = 8;
@@ -150,7 +154,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(354, 9);
+            this.label3.Location = new System.Drawing.Point(409, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 7;
@@ -160,15 +164,15 @@
             // 
             this.cmbAposta_Quantidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAposta_Quantidade.FormattingEnabled = true;
-            this.cmbAposta_Quantidade.Location = new System.Drawing.Point(357, 25);
+            this.cmbAposta_Quantidade.Location = new System.Drawing.Point(412, 25);
             this.cmbAposta_Quantidade.Name = "cmbAposta_Quantidade";
-            this.cmbAposta_Quantidade.Size = new System.Drawing.Size(140, 21);
+            this.cmbAposta_Quantidade.Size = new System.Drawing.Size(105, 21);
             this.cmbAposta_Quantidade.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(208, 9);
+            this.label2.Location = new System.Drawing.Point(195, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 5;
@@ -178,9 +182,9 @@
             // 
             this.cmbAposta_com.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAposta_com.FormattingEnabled = true;
-            this.cmbAposta_com.Location = new System.Drawing.Point(211, 25);
+            this.cmbAposta_com.Location = new System.Drawing.Point(268, 23);
             this.cmbAposta_com.Name = "cmbAposta_com";
-            this.cmbAposta_com.Size = new System.Drawing.Size(140, 21);
+            this.cmbAposta_com.Size = new System.Drawing.Size(68, 21);
             this.cmbAposta_com.TabIndex = 4;
             // 
             // label1
@@ -198,7 +202,7 @@
             this.cmbJogo_Tipo.FormattingEnabled = true;
             this.cmbJogo_Tipo.Location = new System.Drawing.Point(12, 25);
             this.cmbJogo_Tipo.Name = "cmbJogo_Tipo";
-            this.cmbJogo_Tipo.Size = new System.Drawing.Size(193, 21);
+            this.cmbJogo_Tipo.Size = new System.Drawing.Size(177, 21);
             this.cmbJogo_Tipo.TabIndex = 1;
             this.cmbJogo_Tipo.SelectedIndexChanged += new System.EventHandler(this.cmbJogo_Tipo_SelectedIndexChanged);
             // 
@@ -219,7 +223,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.btnImportar);
             this.splitContainer2.Panel2.Controls.Add(this.btnExportar);
             this.splitContainer2.Panel2.Controls.Add(this.btnCopiar);
-            this.splitContainer2.Size = new System.Drawing.Size(771, 430);
+            this.splitContainer2.Size = new System.Drawing.Size(771, 446);
             this.splitContainer2.SplitterDistance = 663;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -232,14 +236,14 @@
             this.grJogos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grJogos.Location = new System.Drawing.Point(0, 0);
             this.grJogos.Name = "grJogos";
-            this.grJogos.Size = new System.Drawing.Size(663, 430);
+            this.grJogos.Size = new System.Drawing.Size(663, 446);
             this.grJogos.TabIndex = 2;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.AutoEllipsis = true;
-            this.button2.Location = new System.Drawing.Point(17, 395);
+            this.button2.Location = new System.Drawing.Point(17, 411);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 6;
@@ -280,6 +284,24 @@
             // bgLtk
             // 
             this.bgLtk.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgLtk_DoWork);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(342, 28);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "números.";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(523, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "números.";
             // 
             // frmGerador_Aleatorio
             // 
@@ -329,5 +351,7 @@
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnCopiar;
         private System.ComponentModel.BackgroundWorker bgLtk;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
