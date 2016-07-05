@@ -59,63 +59,8 @@ namespace LTK
 
             // Instancia e cria a informação de cada jogo.
             InicializarJogoInfo();
-
-
-            // Vamos preencher a lista conforme o tipo do jogo.
-            jogo_aposta = new Dictionary<string, string[]>()
-            {
-                {
-                    "QUINA", new string[] {"5", "6", "7"}
-                },
-                {
-                    "MEGASENA", new string[] {"6", "7", "8", "9", "10", "11", "12", "13", "14", "15"}
-                },
-                {
-                    "LOTOFACIL", new string[] {"15", "16", "17", "18" }
-                },
-                {
-                    "LOTOMANIA", new string[] {"50" }
-                },
-                {
-                    "DUPLASENA",new string[] {"6", "7", "8", "9", "10", "11", "12", "13", "14", "15"}
-                },
-                {
-                    "INTRALOT_MINAS_5", new string[] {"5" }
-                },
-                {
-                    "INTRALOT_LOTO_MINAS", new string[] {"6" }
-                },
-                {
-                    "INTRALOT_KENO_MINAS", new string[] {"10", "9", "8", "7", "6", "5", "4", "3", "2", "1"}
-                }
-            };
-
-            // Carregar o limite de cada jogo.
-            jogo_limite_inferior_superior = new Dictionary<string, int[]>
-            {
-                // Os ítens no arranjo numérico corresponde a:
-                // Limite inferior, Limite Superior e Quantidade de bolas do jogo.
-
-                { "QUINA",                  new int[] {1, 80, 80 } },
-                { "MEGASENA",               new int[] {1, 60, 60 } },
-                { "LOTOFACIL",              new int[] {1, 25, 25 } },
-                { "LOTOMANIA",              new int[] {0, 99, 100} },
-                { "DUPLASENA",              new int[] {1, 50, 50 } },
-                { "INTRALOT_MINAS_5",       new int[] {1, 34, 34 } },
-                { "INTRALOT_LOTO_MINAS",    new int[] {1, 38, 38 } },
-                { "INTRALOT_KENO_MINAS",    new int[] {1, 80, 80 } }
-            };
         }
-
-        readonly static string[] strJogos =  {
-            "QUINA", "MEGASENA", "LOTOFACIL", "LOTOMANIA", "DUPLASENA",
-            "INTRALOT_MINAS_5", "INTRALOT_LOTO_MINAS", "INTRALOT_KENO_MINAS"};
-
-        static Dictionary<string, string[]> jogo_aposta = null;
-
-        static Dictionary<string, int[]> jogo_limite_inferior_superior = null;
-
-
+        
         private void frmGerador_Aleatorio_Load(object sender, EventArgs e)
         {
             // Preenche com o nome dos jogos.
@@ -152,8 +97,11 @@ namespace LTK
             // Só altera se índice esta dentro do intervalo, geralmente, sempre irá funcionar.
             if(indiceSelecionado > 0 && indiceSelecionado < jogoInfo.Length)
             {
+
                 cmbAposta_com.Items.Clear();
 
+                // Cada jogo tem a quantidade míníma e máxima para jogar.
+                // Então, se o jogo altera devemos alterar apropriadamente.
                 for (var uA = 0; uA < jogoInfo[indiceSelecionado].bolasApostadas.Length; uA++)
                     cmbAposta_com.Items.Add(jogoInfo[indiceSelecionado].bolasApostadas[uA]);
                 cmbAposta_com.SelectedIndex = 0;
@@ -163,54 +111,45 @@ namespace LTK
 
         private void btnGerar_Click(object sender, EventArgs e)
         {
-            // Quando o usuário clicar em gerar iremos gerar a quantidade de números aleatórios.
+            // Guardar o nome do jogo escolhido.
             string strJogo = cmbJogo_Tipo.Text.ToUpper();
 
-            // Vamos pegar o número que está no texto, somente.
-            // Vamos retirar as palavras: 'com' e 'números.'
-            // Em seguida, retirar os espaços.
-            string strJogo_Aposta_com = cmbAposta_com.Text;
-
-            strJogo_Aposta_com = strJogo_Aposta_com.Replace("com", "").Replace("número", "");
-            strJogo_Aposta_com = strJogo_Aposta_com.Replace(".", "").Replace("(s)", "").Replace("s", "");
-
-            string strJogo_Quantidade = cmbAposta_Quantidade.Text.Replace("(s)", "").Replace("jogo", "").Replace(".", "").Trim();
-
-            // Vamos verificar se o jogo existe.
-            if (!jogo_aposta.Keys.Contains(strJogo))
-            {
-                MessageBox.Show("ERRO", "Jogo" + strJogo + " inexistente.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            int iJogo_Aposta_com = 0;
-            int iJogo_Quantidade = 0;
-            try
-            {
-                iJogo_Aposta_com = int.Parse(strJogo_Aposta_com);
-                iJogo_Quantidade = int.Parse(strJogo_Quantidade);
-            }
-            catch (System.Exception exc)
-            {
-                MessageBox.Show("Erro: " + exc.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // Pega a quantidade de números apostados para o jogo.
+            int iJogo_Aposta_com = int.Parse(cmbAposta_com.Text);
+            int iJogo_Quantidade = int.Parse(cmbAposta_Quantidade.Text);
 
             // Desativa o controle enquanto executamos a função.
             btnGerar.Enabled = false;
 
-            // Vamos pegar o limite inferior e superior do jogo.
-            int jogo_limite_inferior = jogo_limite_inferior_superior[strJogo][0];
-            int jogo_limite_superior = jogo_limite_inferior_superior[strJogo][1];
-            int jogo_quantidade_de_itens = jogo_limite_inferior_superior[strJogo][2];
+            // Vamos pegar o índice selecionado, o índice selecionado refere-se ao jogo escolhido.
+            int indiceSelecionado = cmbJogo_Tipo.SelectedIndex;
+            int jogo_limite_inferior = jogoInfo[indiceSelecionado].menorBola;
+            int jogo_limite_superior = jogoInfo[indiceSelecionado].maiorBola;
+            int jogo_quantidade_de_itens = jogoInfo[indiceSelecionado].quantidadeBola;
 
             // Acrescentado em 09/05/2016.
             // Se a lista abaixo, não existisse a medida que íamos localizando um novo número aleatório
             // o loop iria demora achar o próximo número, principalmente, se houvesse somente um único número
             // faltando.
             List<int> listaNumeros = new List<int>();
+
+            // Guarda números pares.
+            List<int> listaNumerosPares = new List<int>();
+
+            // Guarda números impares.
+            List<int> listaNumerosImpares = new List<int>();
+
+
             for (var i = jogo_limite_inferior; i <= jogo_limite_superior; i++)
+            {
                 listaNumeros.Add(i);
+
+                // Vamos adicionar o número à lista apropriada conforme se é par ou impar.
+                if (i % 2 == 0)
+                    listaNumerosPares.Add(i);
+                else
+                    listaNumerosImpares.Add(i);
+            }
 
 
             // Vamos criar um arranjo do tipo bool, para guardar o status de cada bola
@@ -220,7 +159,6 @@ namespace LTK
             // igual a 26.
 
             bool[] bNumero_ja_sorteado = new bool[jogo_quantidade_de_itens + 1];
-
 
             int numero_aleatorio = 0;
             Random gerador_aleatorio = new Random();
